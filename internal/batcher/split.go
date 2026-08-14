@@ -17,7 +17,8 @@
         		if len(buf) == 0 {
         			return
         		}
-        		out = append(out, Batch{Events: buf})
+        		cp := append([]event.Event(nil), buf...)
+		out = append(out, Batch{Events: cp})
 		buf = buf[:0]
         	}
         	for _, e := range in {

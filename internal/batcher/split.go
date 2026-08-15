@@ -18,7 +18,7 @@
         			return
         		}
         		out = append(out, Batch{Events: buf})
-		buf = buf[:0]
+		buf = make([]event.Event, 0, size) // 每批独立底层数组，避免复用导致串扰
         	}
         	for _, e := range in {
         		buf = append(buf, e)

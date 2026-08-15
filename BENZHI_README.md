@@ -10,23 +10,23 @@
 
 ## 标准命令
 
-`ash
+```bash
 go build ./...
 go test ./... -count=1
 go vet ./...
-`
+```
 
 ## 构建评测镜像（须双架构）
 
-验证请用 ash -c（勿用 ash -lc）。
+验证请用 `bash -c`（勿用 `bash -lc`）。
 
-`ash
+```bash
 chmod +x build_benzhi_docker.sh
 ./build_benzhi_docker.sh go-event-batch linux/amd64
 docker run --platform linux/amd64 --rm go-event-batch:latest bash -c 'go build ./... && go test ./... -count=1'
 
 ./build_benzhi_docker.sh go-event-batch linux/arm64
 docker run --platform linux/arm64 --rm go-event-batch:latest bash -c 'go build ./... && go test ./... -count=1'
-`
+```
 
 构建阶段已处理依赖下载；容器内不应再出现 downloading ...。
